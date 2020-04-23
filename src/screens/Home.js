@@ -5,7 +5,7 @@ import Card from '../components/Card'
 
 export default function HomeScreen() {
   return (
-    <View>
+    <View style={styles.root}>
       <Header />
       <ScrollView>
         <Card />
@@ -17,3 +17,8 @@ export default function HomeScreen() {
   );
 }
 
+const styles = StyleSheet.create({
+  root: {
+    flex: 1
+  }
+})

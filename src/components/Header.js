@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, Switch } from 'react-native';
 import { AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
-import Constant from 'expo-constants'
 
 export default function Header() {
     // const [isEnabled, setIsEnabled] = useState(false);
@@ -33,7 +32,6 @@ const styles = StyleSheet.create({
     root: {
         height: 45,
         backgroundColor: 'white',
-        marginTop: Constant.statusBarHeight,
         flexDirection: 'row',
         justifyContent: 'space-between',
         elevation: 4 //Works only android
