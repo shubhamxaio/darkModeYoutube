@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         marginTop: Constant.statusBarHeight,
         flexDirection: 'row',
         justifyContent: 'space-between',
-        elevation: 4
+        elevation: 4 //Works only android
     },
     logo: {
         flexDirection: 'row',
