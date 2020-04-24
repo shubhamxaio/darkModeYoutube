@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, Dimensions, TextInput } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'
+import { StyleSheet, View, TextInput, ScrollView } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import MiniCard from '../components/MiniCard';
 
 const SearchScreen = () => {
     const [searchText, setSearchText] = useState("")
@@ -14,10 +15,22 @@ const SearchScreen = () => {
                     onChangeText={(text) => setSearchText(text)}
                     style={styles.input}
                     placeholder='Search Youtube...'
-                    placeholderTextColor="#000" 
+                    placeholderTextColor="#000"
                 />
-                <Ionicons name='md-mic' size={28}/>
+                <Ionicons name='md-mic' size={28} />
             </View>
+
+            <ScrollView>
+                <MiniCard />
+                <MiniCard />
+                <MiniCard />
+                <MiniCard />
+                <MiniCard />
+                <MiniCard />
+                <MiniCard />
+                <MiniCard />
+                <MiniCard />
+            </ScrollView>
 
         </View>
     )
