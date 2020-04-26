@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons'
 
-const MiniCard = () =>{
-    return(
+const MiniCard = (props) => {
+    return (
         <View style={styles.root}>
             <Image
-                source={{ uri: "https://images.unsplash.com/photo-1530543787849-128d94430c6b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80" }}
+                source={{ uri: `https://i.ytimg.com/vi/${props.videoId}/hqdefault.jpg` }}
                 style={styles.image}
             />
             <View style={styles.videoInfo}>
                 <Text style={styles.title} ellipsizeMode='tail' numberOfLines={3}>
-                    This is video title</Text>
-                <Text style={styles.channelName}>Channel Name</Text>
+                    {props.title}</Text>
+                <Text style={styles.channelName}>{props.channelTitle}</Text>
             </View>
         </View>
     )
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 17,
-        width: Dimensions.get("screen").width/2
+        width: Dimensions.get("screen").width / 2
     },
     channelName: {
         fontSize: 12
