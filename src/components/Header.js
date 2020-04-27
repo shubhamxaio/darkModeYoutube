@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View, Switch } from 'react-native';
 import { AntDesign, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
+import Constant from 'expo-constants';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Header() {
     // const [isEnabled, setIsEnabled] = useState(false);
     // const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const navigation = useNavigation()
 
     return (
         <View style={styles.root}>
@@ -15,7 +18,9 @@ export default function Header() {
 
             <View style={styles.actions}>
                 <Ionicons style={styles.logoImg} name='md-videocam' size={30} color='#212121' />
-                <Ionicons style={styles.logoImg} name='md-search' size={30} color='#212121' />
+                <Ionicons style={styles.logoImg} name='md-search' size={30} color='#212121'
+                onPress={()=>navigation.navigate('search')}
+                />
                 <MaterialCommunityIcons style={styles.logoImg} name='nintendo-switch' size={30} color='#212121' />
                 {/* <Switch
                     trackColor={{ false: "#767577", true: "#81b0ff" }}
@@ -34,7 +39,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        elevation: 4 //Works only android
+        elevation: 4, //Works only android
+        marginTop: Constant.statusBarHeight,
     },
     logo: {
         flexDirection: 'row',

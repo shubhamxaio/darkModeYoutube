@@ -2,20 +2,27 @@ import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, ActivityIndicator, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import MiniCard from '../components/MiniCard';
+import Constant from 'expo-constants';
+import { useSelector, useDispatch } from 'react-redux';
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
 
     const [searchText, setSearchText] = useState("")
-    const [miniCardData, setMiniCardData] = useState([])
+    // const [miniCardData, setMiniCardData] = useState([])
     const [loading, setLoading] = useState(false)
+    const dispatch = useDispatch()
+    const miniCardData = useSelector(state => {
+        return state
+    })
 
     const fetchData = () => {
         setLoading(true)
         fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${searchText}&type=video&key=AIzaSyD1brUtYkJ-JCBuOUbtWRDsQ4Wnf1Q5DIY`
         ).then(res => res.json()).then(data => {
-            
             setLoading(false)
-            setMiniCardData(data.items)
+            dispatch({type: 'add', payload: data.items})
+            // setMiniCardData(data.items)
+
         }).catch(err => console.log(err))
     }
 
@@ -27,10 +34,12 @@ const SearchScreen = () => {
     return (
         <View style={styles.root}>
             <View style={styles.searchBar}>
-                <Ionicons name='md-arrow-back' size={32} />
+                <Ionicons name='md-arrow-back' size={32}
+                    onPress={() => navigation.goBack()}
+                />
                 <TextInput
                     value={searchText}
-                    onChangeText={(text) => {handleOnChangeSearch(text)}}
+                    onChangeText={(text) => { handleOnChangeSearch(text) }}
                     style={styles.input}
                     placeholder='Search Youtube...'
                     placeholderTextColor="#000"
@@ -65,8 +74,6 @@ const SearchScreen = () => {
                     />
                 }}
                 keyExtractor={item => item.id.videoId}
-            // refreshing={loading}
-            // onRefresh={()=>fetchData()}
             />
 
         </View>
@@ -75,7 +82,8 @@ const SearchScreen = () => {
 
 const styles = StyleSheet.create({
     root: {
-        flex: 1
+        flex: 1,
+        marginTop: Constant.statusBarHeight
     },
     searchBar: {
         flexDirection: 'row',
@@ -97,4 +105,4 @@ const styles = StyleSheet.create({
 
 export default SearchScreen
 
-// AIzaSyD1brUtYkJ-JCBuOUbtWRDsQ4Wnf1Q5DIY
+// AIzaSyD1brUtYkJ-JCBuOUbtWRDsQ4Wnf1Q5DIY  key for youtube
