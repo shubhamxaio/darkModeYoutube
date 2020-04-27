@@ -6,7 +6,7 @@ import Constant from 'expo-constants';
 import { useSelector, useDispatch } from 'react-redux';
 
 const SearchScreen = ({ navigation }) => {
-
+    const API_KEY = 'AIzaSyD1brUtYkJ-JCBuOUbtWRDsQ4Wnf1Q5DIY'
     const [searchText, setSearchText] = useState("")
     // const [miniCardData, setMiniCardData] = useState([])
     const [loading, setLoading] = useState(false)
@@ -17,7 +17,7 @@ const SearchScreen = ({ navigation }) => {
 
     const fetchData = () => {
         setLoading(true)
-        fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${searchText}&type=video&key=AIzaSyD1brUtYkJ-JCBuOUbtWRDsQ4Wnf1Q5DIY`
+        fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${searchText}&type=video&key=${API_KEY}`
         ).then(res => res.json()).then(data => {
             setLoading(false)
             dispatch({type: 'add', payload: data.items})
@@ -104,5 +104,3 @@ const styles = StyleSheet.create({
 })
 
 export default SearchScreen
-
-// AIzaSyD1brUtYkJ-JCBuOUbtWRDsQ4Wnf1Q5DIY  key for youtube
